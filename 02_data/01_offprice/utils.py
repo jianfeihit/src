@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 #coding: utf-8
 import sys,utils
+import logging
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
+
+logging.basicConfig(level=logging.DEBUG,
+                format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                datefmt='%a, %d %b %Y %H:%M:%S',
+                filename='myapp.log',
+                filemode='w')
 
 def haskeyword(text,keyword_list):
 	flag = False
@@ -15,6 +22,9 @@ def haskeyword(text,keyword_list):
 		except:
 			pass
 	return flag
+
+def log(log_text):
+	logging.info(log_text)
 	
 if __name__ == '__main__':
-	print haskeyword('11',[])
+	log('11')

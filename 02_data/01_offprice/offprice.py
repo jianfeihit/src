@@ -19,11 +19,13 @@ mail_text = ''
 for offprice_item in offprice_list:
 	if dbaccess.insert_or_update(offprice_item):
 		sinaweibo.send_weibo(offprice_item.title+' ¹ºÂòµØÖ·£º'+offprice_item.link)
+		utils.log('send sina_weibo:'+offprice_item.title+' ¹ºÂòµØÖ·£º'+offprice_item.link)
 		if(utils.haskeyword(offprice_item.title.encode('gb2312'),keyword_list)):
 			mail_text = mail_text+offprice_item.title+' ¹ºÂòµØÖ·£º'+offprice_item.link+'<br/>'
 			
-print mail_text
 if(mail_text):		
-	sendmail.sendMail(to,mail_text)	
-	print 'done'
+	sendmail.sendMail(to,mail_text)
+	utils.log('send email to='+to+',content='+mail_text)
+else:
+	utils.log('done without any result')
 
