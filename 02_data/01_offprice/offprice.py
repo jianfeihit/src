@@ -25,7 +25,7 @@ for offprice_item in offprice_list:
 			
 if(mail_text):		
 	sendmail.sendMail(to,mail_text)
-	utils.log('send email to='+to+',content='+mail_text)
+	utils.log('send email to='+",".join(to)+',content='+mail_text)
 else:
 	utils.log('done without any result')
 
