@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from email.header import Header
 
 sender = 'jianfeihit@yahoo.com.cn'
-subject = 'python email test'
+subject = '最新促销信息'
 smtpserver = 'smtp.mail.yahoo.com.cn'
 username = 'jianfeihit'
 password = '7139179yjf'
