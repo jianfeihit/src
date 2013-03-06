@@ -10,8 +10,8 @@ reload(sys)
 sys.setdefaultencoding("gb2312")
 
 #设置keyword和
-keyword_list = ['笔记本散热器','微波炉']
-to='yangjianfei@panguso.com'
+keyword_list = []
+to='yangjianfei@panguso.com,chenmutong@panguso.com'
 
 dbaccess.create_table()
 offprice_list = smzdm.parse_smzdm()
