@@ -2,7 +2,7 @@ import sqlite3
 import utils
 import offpriceitem
 
-data_file = 'D:/data.db'
+data_file = 'data.db'
 
 def create_table():
 	conn = sqlite3.connect(data_file)

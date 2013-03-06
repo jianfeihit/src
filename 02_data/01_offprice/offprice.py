@@ -13,6 +13,7 @@ sys.setdefaultencoding("gb2312")
 keyword_list = ['±Ê¼Ç±¾É¢ÈÈÆ÷','Î¢²¨Â¯']
 to='yangjianfei@panguso.com'
 
+dbaccess.create_table()
 offprice_list = smzdm.parse_smzdm()
 mail_text = ''
 for offprice_item in offprice_list:
