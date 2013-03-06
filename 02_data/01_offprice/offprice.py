@@ -11,7 +11,7 @@ sys.setdefaultencoding("gb2312")
 
 #…Ë÷√keyword∫Õ
 keyword_list = []
-to='yangjianfei@panguso.com,chenmutong@panguso.com'
+to=['yangjianfei@panguso.com','chenmutong@panguso.com']
 
 dbaccess.create_table()
 offprice_list = smzdm.parse_smzdm()

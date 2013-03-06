@@ -18,3 +18,7 @@ def sendMail(receiver,text):
 	smtp.login(username, password)
 	smtp.sendmail(sender, receiver, msg.as_string())
 	smtp.quit()
+	
+if __name__ == '__main__':
+	to = ['yangjianfei@panguso.com','chenmutong@panguso.com']
+	sendMail(to,'Test')
