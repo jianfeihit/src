@@ -6,7 +6,7 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 #≈‰÷√≤Œ ˝
-access_token = '2.00iMV3yBQ3bNHD68b0ebf25c0YEv_F'
+access_token = '***'
 
 def send_weibo(text):
 	conn = httplib.HTTPSConnection('api.weibo.com')

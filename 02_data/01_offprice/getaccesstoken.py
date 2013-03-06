@@ -3,9 +3,9 @@ import httplib,urllib;
 import json
 
 #≈‰÷√≤Œ ˝
-code = '6cddb224e1ef9a96c1ad7b5814db1158'
-client_id = '2855074720'
-client_secret = 'ef0d8c9b1207bd7e099270b74ed374f2'
+code = ''
+client_id = ''
+client_secret = ''
 redirect_uri = 'http://jianfeihit.iteye.com'
 
 conn = httplib.HTTPSConnection('api.weibo.com')
