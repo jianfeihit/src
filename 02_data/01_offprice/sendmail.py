@@ -4,11 +4,11 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 
-sender = 'jianfeihit@yahoo.com.cn'
+sender = 'msgalert@163.com'
 subject = '最新促销信息'
-smtpserver = 'smtp.mail.yahoo.com.cn'
-username = 'jianfeihit'
-password = '7139179yjf111'
+smtpserver = 'smtp.163.com'
+username = 'msgalert'
+password = '****'
 
 def sendMail(receiver,text):
 	msg = MIMEText(text,'html','gb2312')
