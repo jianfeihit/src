@@ -8,7 +8,7 @@ sender = 'jianfeihit@yahoo.com.cn'
 subject = '最新促销信息'
 smtpserver = 'smtp.mail.yahoo.com.cn'
 username = 'jianfeihit'
-password = '7139179yjf'
+password = '7139179yjf111'
 
 def sendMail(receiver,text):
 	msg = MIMEText(text,'html','gb2312')
