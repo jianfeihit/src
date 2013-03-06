@@ -8,7 +8,7 @@ def parse_smzdm():
 	offprice_list = []
 	for element in result['entries']:
 		link = element['guid'].replace('?p=','go/')
-		item = offpriceitem(element['title'],element['description'],element['guid'])
+		item = offpriceitem(element['title'],element['description'],link)
 		offprice_list.append(item)
 	return offprice_list
 		
