@@ -7,11 +7,13 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 LOG_FILENAME="/application/search/python/offprice/myapp.log"
+handler=logging.FileHandler(LOG_FILENAME)
 logging.basicConfig(level=logging.DEBUG,
                 format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
                 datefmt='%a, %d %b %Y %H:%M:%S',
                 filename='myapp.log',
                 filemode='w')
+logger.addHandler(handler)
 
 def haskeyword(text,keyword_list):
 	flag = False
