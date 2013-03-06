@@ -13,6 +13,7 @@ logging.basicConfig(level=logging.DEBUG,
                 datefmt='%a, %d %b %Y %H:%M:%S',
                 filename='myapp.log',
                 filemode='w')
+logger=logging.getLogger()
 logger.addHandler(handler)
 
 def haskeyword(text,keyword_list):
