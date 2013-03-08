@@ -14,7 +14,7 @@ class OffPriceItem(object):
         self.source = source
     
     def __str__(self):
-        return "%s，购买地址:%s(信息来源于:%s)" %(self.title,self.link,self.source)
+        return "%s:%s(%s)" %(self.title,self.link,self.source)
     
         
         
