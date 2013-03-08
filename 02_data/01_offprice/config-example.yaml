@@ -6,19 +6,19 @@ sqlite3_data: 'D:/temp/data.db'
 keyword: 
 
 #e-mail
-mail_sender: msgalert@163.com
+mail_sender: ****
 mail_subject: '最新促销信息'
 mail_smtpserver: 'smtp.163.com'
-mail_username: 'msgalert'
-mail_password: 'msgalert@123'
-mail_to: 'yangjianfei@panguso.com,chenmutong@panguso.com'
+mail_username: '****'
+mail_password: '***'
+mail_to: '***'
 
 #sina_weibo
-sina_accesstoken: '2.00iMV3yBQ3bNHD68b0ebf25c0YEv_F'
+sina_accesstoken: '**'
 
 #yiqifa
-yiqifa_appkey: 13623838876268506
-yiqifa_secret: 770be8d548092a8af17d05d8f2654e23
+yiqifa_appkey: **
+yiqifa_secret: **
 yiqifa_url: 'openapi.yiqifa.com'
 
 #smzdm
