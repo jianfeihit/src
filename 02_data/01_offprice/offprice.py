@@ -29,14 +29,12 @@ offprice_list.extend(yiqifa.parse_discount())
 mail_text = ''
 for item in offprice_list:
 	if sqlite_access.insert_or_update(item):
-		print item
 		sinaweibo.send_weibo(str(item))
 		mylog.info('send sina_weibo:' + str(item))
 		if(myutils.haskeyword(item.title.encode('gb2312'), config.keyword)):
 			mail_text = mail_text + str(item) + '<br/>'
 			
 if(mail_text):	
-	print mail_text	
 	mail_sender.sendMail(mail_text)
 	mylog.info('send email to=' + ",".join(config.mail_to) + ',content=' + mail_text)
 else:
