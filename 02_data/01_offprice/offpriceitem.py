@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+#-*- coding: gb2312 -*-
 '''
 Created on 2013-3-8
 
@@ -14,7 +14,12 @@ class OffPriceItem(object):
         self.source = source
     
     def __str__(self):
-        return self.title+":"+self.link+"("+self.source+")"
+        return "%s,%s(%s)" %(self.title,self.link,self.source)
+    
+
+if __name__ == '__main__':
+    item = OffPriceItem(u'标题',u'描述',u'link',u'来源')
+    print item
     
         
         
