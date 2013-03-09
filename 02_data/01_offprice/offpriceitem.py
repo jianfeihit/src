@@ -1,9 +1,12 @@
-#-*- coding: gb2312 -*-
+#-*- coding: utf-8  -*-
 '''
 Created on 2013-3-8
 
 @author: jianfeihit
 '''
+import sys 
+reload(sys) 
+sys.setdefaultencoding('utf-8') 
 
 class OffPriceItem(object):
     
@@ -18,7 +21,7 @@ class OffPriceItem(object):
     
 
 if __name__ == '__main__':
-    item = OffPriceItem(u'标题',u'描述',u'link',u'来源')
+    item = OffPriceItem(u'鏍囬',u'鎻忚堪',u'link',u'鏉ユ簮')
     print item
     
         
