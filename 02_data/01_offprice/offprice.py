@@ -12,8 +12,9 @@ from myutils.mailsender import MailSender
 from myutils.mylog import MyLog
 from myutils.sinaweibo import SinaWeibo
 from yiqifa.yiqifa import Yiqifa
+import os
 
-config = Config('./config.yaml')
+config = Config(os.getcwd()+'/config.yaml')
 sqlite_access = SQLite3Access(config.sqlite3_data)
 sqlite_access.create_table()
 mylog = MyLog(config.log_home)
