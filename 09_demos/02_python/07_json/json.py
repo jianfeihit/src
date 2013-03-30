@@ -1,0 +1,1 @@
+#-*-coding:utf-8-*-'''Created on 2013-3-27@author: jianfeihit'''import jsonoridata = {'attributeA':'valueA','attributeB':'valueB','attributeC':'valueC'}jsondata = json.dumps(oridata)print jsondatatemp = json.loads(jsondata)print temp['attributeA']
