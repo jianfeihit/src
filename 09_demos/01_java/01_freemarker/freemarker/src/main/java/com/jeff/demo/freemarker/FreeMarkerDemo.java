@@ -9,6 +9,7 @@ import java.io.Writer;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import freemarker.template.Configuration;
@@ -27,7 +28,8 @@ public class FreeMarkerDemo {
 
 	public static void main(String[] args) throws IOException, TemplateException {
 //		loadTemplateFromFile();
-		loadTemplateFromString();
+//		loadTemplateFromString();
+		testGetParameter();
 	}
 
 	/**
@@ -73,6 +75,15 @@ public class FreeMarkerDemo {
 		Writer out = new OutputStreamWriter(System.out);
 		temp.process(valueMap, out);
 		out.flush();
+	}
+	
+	private static void testGetParameter() throws IOException{
+		String templateStr = "Hello ${date.yyyy}";
+		Template template = new Template("name", new StringReader(templateStr), new Configuration());
+		List<String> paraList = FreeMarkerUtil.getParameters(template);
+		for(String para : paraList){
+			System.out.println(para);
+		}
 	}
 
 }
