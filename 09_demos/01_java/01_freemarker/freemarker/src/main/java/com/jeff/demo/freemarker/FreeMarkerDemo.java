@@ -28,8 +28,8 @@ public class FreeMarkerDemo {
 
 	public static void main(String[] args) throws IOException, TemplateException {
 //		loadTemplateFromFile();
-//		loadTemplateFromString();
-		testGetParameter();
+		loadTemplateFromString();
+//		testGetParameter();
 	}
 
 	/**
@@ -68,10 +68,11 @@ public class FreeMarkerDemo {
 //		config.setTemplateLoader(stringLoader);
 //		Template temp = config.getTemplate("myTemplate");
 
-		String templateStr = "Hello ${user}";
+		String templateStr = "Hello ${user},All${today?string(\"yyyyMMdd\")}.csv";
 		Template temp = new Template("name", new StringReader(templateStr), new Configuration());
 		Map<String, Object> valueMap = new HashMap<String, Object>();
 		valueMap.put("user", "Tom");
+		valueMap.put("today", new Date());
 		Writer out = new OutputStreamWriter(System.out);
 		temp.process(valueMap, out);
 		out.flush();
