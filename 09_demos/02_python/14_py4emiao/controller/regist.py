@@ -6,6 +6,7 @@ Created on 2013-4-10
 '''
 import web
 from service import gravatar
+from vo.User import User
 
 urls = ('/regist', 'regist',)
 app = web.application(urls, globals())
@@ -16,7 +17,7 @@ class regist(object):
         if len(password) <6 :
             return 'password is too short.'
         avatar = gravatar.getAvatarUrl(email)
-        
+        #构造User，然后调用DAO入库，DAO层略去
         return 'Hello world!'
     
 if __name__ == '__main__':
