@@ -6,6 +6,10 @@ Created on 2013-3-8
 '''
 import smtplib
 from email.mime.text import MIMEText
+import sys 
+
+reload(sys) 
+sys.setdefaultencoding('utf-8')
 
 class MailSender:
 	def __init__(self,sender,subject,smtpserver,username,password,to):

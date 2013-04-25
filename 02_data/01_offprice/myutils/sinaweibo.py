@@ -4,7 +4,11 @@ Created on 2013-3-8
 
 @author: jianfeihit
 '''
-import httplib,urllib,json; 
+import httplib,urllib,json
+import sys 
+
+reload(sys) 
+sys.setdefaultencoding('utf-8')
 
 class SinaWeibo:
 	def __init__(self,token,code='',client_id='',client_secret='',redirect_uri=''):
@@ -36,8 +40,28 @@ class SinaWeibo:
 			return json_array['access_token']
 		else:
 			return ''
-			
+	
+	def get_userId_nickname(self,nickname):	
+		conn = httplib.HTTPSConnection('api.weibo.com/2/users/domain_show.json?domain=%s&access_token=%s'%(nickname,self.__token__))	
+		response = conn.getresponse().read()
+		json_array = json.loads(response)
+		return json_array['id']
+
+
+	def get_user_weibo(self,uid):
+		conn = httplib.HTTPSConnection('api.weibo.com')	
+		conn.request(method="GET",url="/2/statuses/user_timeline.json?uid=%d&access_token=%s&feature=1&trim_user=1"%(uid,self.__token__))
+		response = conn.getresponse().read()
+		json_array = json.loads(response)
+		weiboItems = json_array['statuses']
+		totalNum = json_array['total_number']
+		result = []
+		for weibo in weiboItems:
+			result.append(str(weibo['id'])+','+weibo['text'])
+		return totalNum,result
 		
 if __name__ == '__main__':
-	sinaweibo = SinaWeibo('***')
-	sinaweibo.send_weibo('Test测试中文111')
+	sinaweibo = SinaWeibo('2.00iMV3yBQ3bNHD68b0ebf25c0YEv_F')
+	total,contents = sinaweibo.get_user_weibo(1844559843)
+	for tt in contents:
+		print tt
