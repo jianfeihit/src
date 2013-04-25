@@ -61,7 +61,7 @@ class SinaWeibo:
 		return totalNum,result
 		
 if __name__ == '__main__':
-	sinaweibo = SinaWeibo('2.00iMV3yBQ3bNHD68b0ebf25c0YEv_F')
+	sinaweibo = SinaWeibo('***')
 	total,contents = sinaweibo.get_user_weibo(1844559843)
 	for tt in contents:
 		print tt
