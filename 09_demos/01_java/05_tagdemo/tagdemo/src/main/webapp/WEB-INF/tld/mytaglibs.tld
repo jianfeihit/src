@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "web-jsptaglibrary_1_2.dtd" >  
+<taglib>  
+  <tlibversion>1.0</tlibversion>  
+  <jsp-version>1.2</jsp-version>  
+  <shortname>mt</shortname>  
+  <tag>  
+    <name>sd</name>  
+    <tagclass>com.jeff.demo.tag.tag.SimpleDemoTag</tagclass>  <!-- 指定你的标签的类 -->  
+  </tag>
+  <tag>
+    <name>reporter</name>
+    <tag-class>com.jeff.demo.tag.tag.ReporterTag</tag-class>
+    <body-content>jsp</body-content>
+    <attribute>
+        <name>items</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <name>var</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+  
+  <function>
+    <name>add</name>
+    <function-class>com.jeff.demo.tag.function.SimpleFunction</function-class>
+    <function-signature>boolean contains(java.lang.String, java.lang.String)</function-signature>
+    <example>
+      &lt;c:if test="${fn:contains(name, searchString)}">
+    </example>
+  </function>  
+</taglib>
