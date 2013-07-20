@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap        
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"        
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="link">
+	<typeAlias alias="link" type="com.obss.radar.crawler.po.Link" />
+
+	<insert id="saveLink" parameterClass="link">
+		insert into
+		t_link(siteId,linkMD5,link,snapPath,contentMD5,state,lastCrawDate)
+		VALUES(#siteId#,#linkMD5#,#link#,#snapPath#,#contentMD5#,#state#,sysdate())
+	</insert>
+
+	<select id="getUndoLink" parameterClass="java.util.Map"
+		resultClass="link">
+		select id,siteId,link,linkMD5,contentMD5
+		from t_link
+		where siteId in (select t.id
+		from t_site t where
+		t.state='0'
+		<isNotEmpty property="siteList">
+			<iterate open="(" close=")" conjunction="OR" property="siteList"
+				prepend="and">
+				taskId=#siteList[]#
+			</iterate>
+		</isNotEmpty>
+		) and state='0' 
+		limit 0,#fetchSize#
+	</select>
+
+	<select id="getLinkByLinkMD5" parameterClass="java.lang.String"
+		resultClass="link">
+		select linkMD5,link
+		from t_link
+		where linkMD5=#linkMD5#
+	</select>
+
+	<update id="updateLink" parameterClass="link">
+		update t_link
+		set lastCrawDate=sysdate()
+		<isNotEmpty property="snapPath">
+			,snapPath=#snapPath#
+		</isNotEmpty>
+		<isNotEmpty property="contentMD5">
+			,contentMD5=#contentMD5#
+		</isNotEmpty>
+		<isNotEmpty property="state">
+			,state=#state#
+		</isNotEmpty>
+		where id=#id#
+	</update>
+</sqlMap>

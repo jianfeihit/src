@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap        
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"        
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="site">
+	<typeAlias alias="site" type="com.obss.radar.crawler.po.Site" />
+    
+    <select id="getSite" resultClass="site" parameterClass="java.lang.String">
+    	select * from t_site where id=#id#
+    </select>
+    
+    <select id="getSiteIds" resultClass="site">
+    	SELECT id FROM `t_site` where state='0'
+    </select>
+</sqlMap>

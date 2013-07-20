@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap        
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"        
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="keywordPage">
+	<typeAlias alias="keywordPage" type="com.obss.radar.crawler.po.KeywordPage" />
+    
+   	<insert id="saveKeywordPage" parameterClass="keywordPage">
+		insert into t_keyword_page(siteId,keyword,title,digist,link,snapPath,checkDate,isHandle,isReport)
+		VALUES(#siteId#,#keyword#,#title#,#digist#,#link#,#snapPath#,sysdate(),#isHandle#,#isReport#)
+	</insert>
+</sqlMap>
