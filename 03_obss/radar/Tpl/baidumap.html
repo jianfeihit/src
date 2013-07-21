@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+<title></title>
+</head>
+<body>
+<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+var map = new BMap.Map("allmap");
+map.centerAndZoom(new BMap.Point(120.384428,36.105215), 5);
+
+var bdary = new BMap.Boundary();
+bdary.get("青岛", function(rs){       //获取行政区域
+        map.clearOverlays();        //清除地图覆盖物       
+        var count = rs.boundaries.length; //行政区域的点有多少个
+			for(var i = 0; i < count; i++){
+            var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 2, strokeColor: "#ff0000",fillColor:"#ffff00"}); 
+            
+            //建立多边形覆盖物
+            map.addOverlay(ply);  //添加覆盖物
+            
+			pt = new BMap.Point(122.384428,36.105215);
+var m = new BMap.Marker(pt);
+var s = new BMap.Size(78,77);
+var icon = new BMap.Icon("imgs/m0.png",s );
+m.setIcon(icon);
+var label = new BMap.Label("3");
+label.setStyle({ color : "black", fontSize : "12px",border:"none","background":"transparent","font-weight":"bold","margin":"18px 21px"});
+m.setLabel(label);
+var sContent ='<div class="map_hot"><h1>热点事件</h1><ul>';
+
+         sContent +='<li><a href="'+this.url+'">'+111+'</a></li>';
+
+                            sContent +='</ul><div class="jiao"><img src="static/images/jiao.png" width="111" height="29" /></div>';
+
+         var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+
+         
+
+                      m.addEventListener("click", function(){          
+
+                               this.openInfoWindow(infoWindow);
+
+                            });
+
+
+map.addOverlay(m); 
+			
+            map.setViewport(ply.getPath());    //调整视野         
+        }                
+    });
+	
+</script>

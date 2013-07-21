@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>添加站点</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/font.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">        
+    <link href="css/ui-lightness/jquery-ui-1.10.0.custom.min.css" rel="stylesheet">
+    <link href="css/base-admin-2.css" rel="stylesheet">
+    <link href="css/base-admin-2-responsive.css" rel="stylesheet">
+    <link href="css/buttons.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">   
+    <link href="css/custom.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<style type="text/css">
+	#allmap {width: 553;height: 268}
+</style>
+  </head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			
+			<a class="brand" href="#">
+			<img src="imgs/radar.png" height="40" width="40" />
+				信息审查雷达
+			</a>		
+			<div class="nav-collapse collapse">
+				<ul class="nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle admin" data-toggle="dropdown">
+							<i class="icon-user"></i>张三<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="javascript:;">个人信息</a></li>
+							<li class="divider"></li>
+							<li><a href="javascript:;">退出</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!--/.nav-collapse -->	
+		</div> <!-- /container -->
+	</div> <!-- /navbar-inner -->
+</div> <!-- /navbar -->
+    
+<div class="subnavbar">
+	<div class="subnavbar-inner">
+		<div class="container">
+			<a class="btn-subnavbar collapsed" data-toggle="collapse" data-target=".subnav-collapse">
+				<i class="icon-reorder"></i>
+			</a>
+			<div class="subnav-collapse collapse">
+				<ul class="mainnav">
+					<li class="">
+						<a href="#">
+							<i class="icon-home"></i>
+							<span>主页</span>
+						</a>	    				
+					</li>
+					
+					<li class="dropdown active">					
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-th"></i>
+							<span>关键词</span>
+							<b class="caret"></b>
+						</a>	    
+					
+						<ul class="dropdown-menu">
+							<li><a href="#">Elements</a></li>
+							<li><a href="#">Validation</a></li>
+							<li><a href="#">jQuery UI</a></li>
+							<li><a href="#">Charts</a></li>
+							<li><a href="#">Popups/Notifications</a></li>
+						</ul> 				
+					</li>
+					
+					<li class="dropdown">					
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-copy"></i>
+							<span>监控站点</span>
+							<b class="caret"></b>
+						</a>	    
+					
+						<ul class="dropdown-menu">
+							<li><a href="http://jumpstartuidemo.com/themes/base/pricing.html">Pricing Plans</a></li>
+							<li><a href="http://jumpstartuidemo.com/themes/base/faq.html">FAQ's</a></li>
+							<li><a href="http://jumpstartuidemo.com/themes/base/gallery.html">Gallery</a></li>
+							<li><a href="http://jumpstartuidemo.com/themes/base/reports.html">Reports</a></li>
+							<li><a href="http://jumpstartuidemo.com/themes/base/account.html">User Account</a></li>
+						</ul> 				
+					</li>
+					
+					<li class="dropdown">					
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-external-link"></i>
+							<span>告警信息</span>
+							<b class="caret"></b>
+						</a>	
+					
+						<ul class="dropdown-menu">
+							<li><a href="http://jumpstartuidemo.com/themes/base/login.html">Login</a></li>
+							<li><a href="http://jumpstartuidemo.com/themes/base/signup.html">Signup</a></li>
+							<li><a href="http://jumpstartuidemo.com/themes/base/error.html">Error</a></li>
+							<li class="dropdown-submenu">
+			                  <a tabindex="-1" href="http://jumpstartuidemo.com/themes/base/index.html#">Dropdown menu</a>
+			                  <ul class="dropdown-menu">
+			                    <li><a tabindex="-1" href="http://jumpstartuidemo.com/themes/base/index.html#">Second level link</a></li>
+			                    <li><a tabindex="-1" href="http://jumpstartuidemo.com/themes/base/index.html#">Second level link</a></li>
+			                    <li><a tabindex="-1" href="http://jumpstartuidemo.com/themes/base/index.html#">Second level link</a></li>
+			                  </ul>
+			                </li>
+						</ul>    				
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="main">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+            <div class="widget stacked">
+                <div class="widget-header">
+                    <i class="icon-check"></i>
+                    <h3>添加站点</h3>
+                </div> 
+                <div class="widget-content">
+                    <br />
+                    <form action="/" id="validation-form" class="form-horizontal">
+                        <fieldset>
+                            <div class="control-group">
+                              <label class="control-label" for="name">网站名称</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" name="name" id="name">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="email">入口地址</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" name="email" id="email">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="subject">管理员</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" name="subject" id="subject">
+                              </div>
+                            </div>
+                             <div class="control-group">
+                              <label class="control-label" for="subject">管理员电话</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" name="subject" id="subject">
+                              </div>
+                            </div>
+                             <div class="control-group">
+                              <label class="control-label" for="subject">管理员邮箱</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" name="subject" id="subject">
+                              </div>
+                            </div>
+                          <div class="control-group">
+                            <label class="control-label" for="validateSelect">监控频率</label>
+                            <div class="controls">
+                              <select id="validateSelect" name="validateSelect">
+                                <option value="">请选择...</option>
+                                <option value="1">每小时</option>
+                                <option value="2">每天</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="control-group">
+                            <label class="control-label" for="validateSelect">监控模式</label>
+                            <div class="controls">
+                              <select id="validateSelect" name="validateSelect">
+                                <option value="">请选择...</option>
+                                <option value="1">主动监控</option>
+                                <option value="2">被动监控</option>
+                                <option value="2">两者都有</option>
+                              </select>
+                            </div>
+                          </div>
+                            <div class="control-group">
+                            <label class="control-label">关键词</label>
+                            <div class="controls">
+                              <label class="checkbox">
+                                <input type="checkbox" name="validateCheckbox" value="option1">
+                                关键词1
+                              </label>
+                              <label class="checkbox">
+                                <input type="checkbox" name="validateCheckbox" value="option2">
+                                关键词2
+                              </label>
+                              <label class="checkbox">
+                                <input type="checkbox" name="validateCheckbox" value="option3">
+                               关键词3
+                              </label>
+                            </div>
+                          </div>
+                            <div class="form-actions">
+                              <button type="submit" class="btn btn-danger btn">Validate</button>&nbsp;&nbsp;
+                              <button type="reset" class="btn">Cancel</button>
+                            </div>
+                          </fieldset>
+                        </form>
+                </div> 
+            </div>              
+        </div>        
+      </div>
+    </div> 
+</div>
+    
+<div class="footer">
+	<div class="container">
+		<div class="row">
+			<div id="footer-copyright" class="span6">© 2012-13 Calculus Studio.</div>
+		</div>
+	</div>
+</div>
+
+<script src="./js/jquery-1.8.3.min.js"></script>
+<script src="./js/bootstrap-paginator.min.js"></script>
+<script src="./js/jquery-ui-1.10.0.custom.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script type="text/javascript">
+var options = {
+            currentPage: 4,
+            totalPages: 10,
+	    	numberOfPages:5
+        }
+
+$('#example').bootstrapPaginator(options);
+</script>
+</body>
+</html>
