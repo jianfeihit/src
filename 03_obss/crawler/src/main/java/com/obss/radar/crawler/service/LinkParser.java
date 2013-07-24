@@ -72,15 +72,14 @@ public class LinkParser extends Thread implements Startupable {
 				// collecte out links
 				Elements linkEles = document.select("a:not(a[href=#])");
 				for (Element newlinkEle : linkEles) {
-					String newLink = newlinkEle.attr("href");
-					newLink = HTTPUtils.buildHref(newLink, link.getLink());
+					String newLink = newlinkEle.attr("abs:href");
 					if (StringUtils.isNotEmpty(newLink)) {
 						if (!urlJudger.judge(newLink, site)) {
 		    				logger.debug("url过滤不通过.newLink={},mainHost={}",newLink,site.getMainHost());
 							continue;
 						}
-						saver.saveLink(link);
-//						
+						Link toDBLink = new Link(site.getId(),newLink);
+						saver.saveLink(toDBLink);
 					}
 				}
 
