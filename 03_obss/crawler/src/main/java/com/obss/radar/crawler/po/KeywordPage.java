@@ -14,6 +14,7 @@ public class KeywordPage {
 	
 	private String id;
 	private String siteId;
+	private String siteName;
 	private String keyword;
 	private String digist;
 	private String snapPath;
@@ -82,5 +83,11 @@ public class KeywordPage {
 	}
 	public void setIsReport(String isReport) {
 		this.isReport = isReport;
+	}
+	public String getSiteName() {
+		return siteName;
+	}
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
 }
