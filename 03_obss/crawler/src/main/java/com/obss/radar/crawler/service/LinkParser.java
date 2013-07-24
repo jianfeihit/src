@@ -105,6 +105,7 @@ public class LinkParser extends Thread implements Startupable {
 						page.setDigist(digist);
 						page.setLink(link.getLink());
 						page.setSiteId(link.getSiteId());
+						page.setSiteName(site.getSiteName());
 						page.setSnapPath(snapPath);
 						page.setTitle(HTMLUtil.getTitle(document.html()));
 						keywordPageDAO.saveKeywordPage(page);

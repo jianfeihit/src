@@ -16,7 +16,7 @@ public class LinkSnapStorer {
 	private String baseDic;
 	
 	public String store(Link link,String content) throws IOException{
-		String filePath = baseDic+File.separator+link.getSiteId()+File.separator+link.getLinkMD5();
+		String filePath = baseDic+"/"+link.getSiteId()+"/"+link.getLinkMD5();
 		FileUtils.writeStringToFile(new File(filePath), content, ENCODING);
 		return filePath;
 	}
