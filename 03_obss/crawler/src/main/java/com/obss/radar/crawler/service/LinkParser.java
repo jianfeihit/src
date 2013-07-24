@@ -64,6 +64,7 @@ public class LinkParser extends Thread implements Startupable {
 				String text = document.text();
 				String contentMd5 = MD5Util.MD5(text);
 				if (contentMd5.equals(link.getContentMD5())) {
+					logger.info("内容未发生变化，不处理.link={}",link.getLink());
 					continue;
 				}
 
@@ -118,11 +119,12 @@ public class LinkParser extends Thread implements Startupable {
 				link.setState(Link.STAR_DONE);
 				linkDAO.updateLink(link);
 				long time6 = System.currentTimeMillis();
-				logger.debug("link={},loadTime={}",link.getLink(),(time6 - time5));
-				logger.debug("link={},collecte out links time={}",link.getLink(),(time5 - time4));
-				logger.debug("link={},save snapshort time={}",link.getLink(), (time4 - time3));
-				logger.debug("link={},check keyword time={}",link.getLink(), (time3 - time2));
-				logger.debug("link={},update link time={}",link.getLink(), (time2 - time1));
+				logger.info("处理完成.link={}",link.getLink());
+//				logger.debug("link={},loadTime={}",link.getLink(),(time6 - time5));
+//				logger.debug("link={},collecte out links time={}",link.getLink(),(time5 - time4));
+//				logger.debug("link={},save snapshort time={}",link.getLink(), (time4 - time3));
+//				logger.debug("link={},check keyword time={}",link.getLink(), (time3 - time2));
+//				logger.debug("link={},update link time={}",link.getLink(), (time2 - time1));
 			} catch (Throwable e) {
 				e.printStackTrace();
 			}
