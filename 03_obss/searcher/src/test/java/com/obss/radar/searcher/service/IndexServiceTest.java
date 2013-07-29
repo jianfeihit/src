@@ -23,22 +23,19 @@ public class IndexServiceTest extends TestCase {
 	}
 	
 	public void testBuildIndex() throws Exception {
-		IndexService index = new IndexService();
-		Link link = new Link();
-		Site site = new Site();
-		link.setSnapPath("D:/snapshort/3/80a59a78423c051e0e7ea0116a9f098c");
-		link.setId("1");
-		link.setLink("http://www.jl.gov.cn");
-		link.setLastCrawDate(new Date());
-		site.setCity("北京");
-		site.setNetsp("联通");
-		site.setIp("10.10.10.10");
-		site.setFeedUrl("http://www.jl.gov.cn");
-		index.index(true, link, site);
+//		IndexService index = new IndexService();
+//		Link link = new Link();
+//		Site site = new Site();
+//		link.setSnapPath("D:/snapshort/3/80a59a78423c051e0e7ea0116a9f098c");
+//		link.setId("1");
+//		link.setLink("http://www.jl.gov.cn");
+//		link.setLastCrawDate(new Date());
+//		site.setCity("北京");
+//		site.setNetsp("联通");
+//		site.setIp("10.10.10.10");
+//		site.setFeedUrl("http://www.jl.gov.cn");
+//		index.index(true, link, site);
 	}
 	
-	public void test() throws CorruptIndexException, IOException{
-		IndexSearcher searcher =  new IndexSearcher(FSDirectory.open(new File("D:/index11")),true);
-	}
 
 }

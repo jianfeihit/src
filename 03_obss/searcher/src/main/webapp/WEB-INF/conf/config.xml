@@ -2,4 +2,9 @@
 <Config>
 	<abstractLength>200</abstractLength>
 	<indexBasepath>D:/index</indexBasepath>
+	<baiduSearch>http://www.baidu.com/s?wd=</baiduSearch>
+	<bingSearch>http://cn.bing.com/search?q=</bingSearch>
+	<googleSearch>https://www.google.com.hk/search?q=</googleSearch>
+	<sogouSearch>http://www.sogou.com/web?ie=utf8&amp;query=</sogouSearch>
+	<qihuSearch>http://www.so.com/s?q=</qihuSearch>
 </Config>

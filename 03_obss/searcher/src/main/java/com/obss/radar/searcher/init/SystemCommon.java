@@ -14,8 +14,24 @@ public class SystemCommon {
 	
 	public static int abstractLength = 200;
 	
+	public static String baiduSearch = "";
+	
+	public static String bingSearch = "";
+	
+	public static String googleSearch = "";
+	
+	public static String sogouSearch = "";
+	
+	public static String qihuSearch = "";
+	
+	
 	public static void init(){
 		abstractLength = XmlFileConfigFactory.getInt("abstractLength",200);
 		indexBasepath = XmlFileConfigFactory.getString("indexBasepath");
+		baiduSearch = XmlFileConfigFactory.getString("baiduSearch");
+		bingSearch = XmlFileConfigFactory.getString("bingSearch");
+		googleSearch = XmlFileConfigFactory.getString("googleSearch");
+		sogouSearch = XmlFileConfigFactory.getString("sogouSearch");
+		qihuSearch = XmlFileConfigFactory.getString("qihuSearch");
 	}
 }

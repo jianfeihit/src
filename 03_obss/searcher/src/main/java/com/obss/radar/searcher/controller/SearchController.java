@@ -7,7 +7,10 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
 import com.obss.radar.searcher.po.DetailInfo;
+import com.obss.radar.searcher.po.SearchResult;
 import com.obss.radar.searcher.po.StatisticsInfo;
+import com.obss.radar.searcher.service.ISearchService;
 import com.obss.radar.searcher.service.SearchService;
 
 /**
@@ -24,7 +29,7 @@ import com.obss.radar.searcher.service.SearchService;
  */
 @Controller
 @RequestMapping("/search/*")
-public class SearchController {
+public class SearchController implements ApplicationContextAware{
 	
 	private static final String SUCCESS = "1";
 	
@@ -34,6 +39,8 @@ public class SearchController {
 	
 	@Autowired
 	private SearchService searchService = null;
+	
+	private ApplicationContext context;
 	
 	@RequestMapping(value = "/detailSearch", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView detailSearch(@RequestParam(value = "query", required = false, defaultValue = "0") String query,
@@ -116,6 +123,33 @@ public class SearchController {
 	        respModel.put("errorMsg", e.getMessage());
         }
 		return new ModelAndView(new MappingJacksonJsonView(), respModel);
+	}
+	
+	/**
+	 * 公网搜索
+	 * @param q 搜索词
+	 * @param sis 
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/searchInternet", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView searchInternet(String q,String sis) throws Exception{
+		q = new String(q.getBytes("ISO-8859-1"),"utf-8");
+		sis = new String(sis.getBytes("ISO-8859-1"),"utf-8");
+		String[] siArray = sis.split("\\|");
+		Map<String, Object> respModel = new HashMap<String, Object>();
+		for(String si : siArray){
+			ISearchService service = (ISearchService) context.getBean(si+"Search");
+			List<SearchResult> result = service.search(q);
+			respModel.put(si, result);
+		}
+		return new ModelAndView(new MappingJacksonJsonView(), respModel);
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext context)
+			throws BeansException {
+		this.context = context;
 	}
 	
 }
