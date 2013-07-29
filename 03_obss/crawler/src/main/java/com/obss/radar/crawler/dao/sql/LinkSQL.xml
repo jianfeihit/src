@@ -37,7 +37,7 @@
 
 	<update id="updateLink" parameterClass="link">
 		update t_link
-		set lastCrawDate=sysdate()
+		set lastCrawDate=sysdate(),checktimes=checktimes+1
 		<isNotEmpty property="snapPath">
 			,snapPath=#snapPath#
 		</isNotEmpty>
