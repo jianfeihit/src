@@ -1,5 +1,6 @@
 package com.obss.radar.searcher.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -130,18 +131,25 @@ public class SearchController implements ApplicationContextAware{
 	 * @param q 搜索词
 	 * @param sis 
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/searchInternet", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView searchInternet(String q,String sis) throws Exception{
+	public ModelAndView searchInternet(String q,String sis) throws UnsupportedEncodingException{
 		q = new String(q.getBytes("ISO-8859-1"),"utf-8");
 		sis = new String(sis.getBytes("ISO-8859-1"),"utf-8");
 		String[] siArray = sis.split("\\|");
 		Map<String, Object> respModel = new HashMap<String, Object>();
 		for(String si : siArray){
 			ISearchService service = (ISearchService) context.getBean(si+"Search");
-			List<SearchResult> result = service.search(q);
-			respModel.put(si, result);
+			List<SearchResult> result;
+			try {
+				result = service.search(q);
+				respModel.put(si, result);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		return new ModelAndView(new MappingJacksonJsonView(), respModel);
 	}
