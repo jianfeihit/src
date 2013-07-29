@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap        
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"        
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="link">
+	<typeAlias alias="link" type="com.obss.radar.searcher.po.Link" />
+
+	<select id="getUnIndexedLink" parameterClass="java.lang.Integer" resultClass="link">
+		select * from t_link where isIndexed=0 and state=2 limit 0,#pageSize#
+	</select>
+	
+	<update id="updateIndexState" parameterClass="link">
+	   update t_link set isIndexed='1' where id=#id#
+	</update>
+	
+	<update id="updateAllToUnIndex">
+       update t_link set isIndexed='0' where state=2
+    </update>
+</sqlMap>
