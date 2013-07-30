@@ -42,7 +42,16 @@ public class Highlight {
 			
 			Highlighter highlighter = new Highlighter(simpleHTMLFormatter,new QueryScorer(termquery));
 			highlighter.setTextFragmenter(new SimpleFragmenter(SystemCommon.abstractLength));
-			return highlighter.getBestFragment(analyzer,"content",content);
+			String result = highlighter.getBestFragment(analyzer,"content",content);
+			if(result == null){
+				if(content.indexOf(highlight_back)>0 || content.length()<=SystemCommon.abstractLength){
+					return content;
+				}else{
+					return content.substring(0, SystemCommon.abstractLength);
+				}
+			}else{
+				return result;
+			}
 		}
 	}
 }

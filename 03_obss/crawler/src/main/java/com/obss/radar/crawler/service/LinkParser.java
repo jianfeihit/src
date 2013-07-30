@@ -19,7 +19,6 @@ import com.obss.radar.crawler.po.KeywordPage;
 import com.obss.radar.crawler.po.Link;
 import com.obss.radar.crawler.po.Site;
 import com.obss.radar.crawler.util.HTMLUtil;
-import com.obss.radar.crawler.util.HTTPUtils;
 import com.obss.radar.crawler.util.MD5Util;
 
 @Component
@@ -94,7 +93,7 @@ public class LinkParser extends Thread implements Startupable {
 					List<String> hitKeyword = new ArrayList<String>();
 					String digist = text;
 					for (String keyword : site.getKeywordList()) {
-						if (text.indexOf(keyword) > 0) {
+						if (digist.indexOf(keyword) >= 0) {
 							hitKeyword.add(keyword);
 							digist = highlight.lightContent(digist, keyword);
 						}

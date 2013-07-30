@@ -53,6 +53,8 @@ public class Site {
     private String state;
     private String mainHost;
     private String keywords;
+    private String lat;
+    private String lng;
     private List<String> keywordList;
     
     public String getId() {
@@ -164,5 +166,21 @@ public class Site {
 		if(StringUtils.isNotEmpty(keywords)){
 			this.keywordList = Arrays.asList(keywords.split("\\|"));
 		}
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public void setLat(String lat) {
+		this.lat = lat;
+	}
+
+	public String getLng() {
+		return lng;
+	}
+
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
 }
