@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.obss.radar.crawler.dao.KeywordPageDAO;
@@ -43,6 +44,9 @@ public class LinkParser extends Thread implements Startupable {
 	private LinkDAO linkDAO;
 	@Autowired
 	private KeywordPageDAO keywordPageDAO;
+	
+	@Value("${jsoup.timeout}")
+	private int timeout = 5000;
 
 	private boolean isStop = false;
 
@@ -59,7 +63,7 @@ public class LinkParser extends Thread implements Startupable {
 				// download link
 				Link link = loader.getLink();
 				Site site = siteService.getSiteById(link.getSiteId());
-				Document document = Jsoup.connect(link.getLink()).userAgent(UA).get();
+				Document document = Jsoup.connect(link.getLink()).timeout(timeout).userAgent(UA).get();
 				String text = document.text();
 				String contentMd5 = MD5Util.MD5(text);
 				if (contentMd5.equals(link.getContentMD5())) {
