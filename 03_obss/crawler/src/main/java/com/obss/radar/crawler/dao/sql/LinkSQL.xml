@@ -7,8 +7,8 @@
 
 	<insert id="saveLink" parameterClass="link">
 		insert into
-		t_link(siteId,linkMD5,link,snapPath,contentMD5,state,lastCrawDate)
-		VALUES(#siteId#,#linkMD5#,#link#,#snapPath#,#contentMD5#,#state#,sysdate())
+		t_link(siteId,linkMD5,link,snapPath,contentMD5,state,lastCrawDate,checktimes)
+		VALUES(#siteId#,#linkMD5#,#link#,#snapPath#,#contentMD5#,#state#,sysdate(),1)
 	</insert>
 
 	<select id="getUndoLink" parameterClass="java.util.Map"
