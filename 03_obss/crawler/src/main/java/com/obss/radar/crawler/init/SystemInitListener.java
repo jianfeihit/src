@@ -22,12 +22,12 @@ public class SystemInitListener {
 	@PostConstruct
 	public void init() {
 		confPath = System.getProperty(SystemCommon.JVM_ENV_KEY);
-		try {
-			LogConfig.config(confPath + File.separator + "logback.xml");
-//            XmlFileConfigFactory.init(confPath + File.separator + "config.xml");
-		} catch (JoranException e) {
-			throw new ProgramException(e);
-		}
+//		try {
+//			LogConfig.config(confPath + File.separator + "logback.xml");
+////            XmlFileConfigFactory.init(confPath + File.separator + "config.xml");
+//		} catch (JoranException e) {
+//			throw new ProgramException(e);
+//		}
 		logger.info("system init ok.");
 	}
 

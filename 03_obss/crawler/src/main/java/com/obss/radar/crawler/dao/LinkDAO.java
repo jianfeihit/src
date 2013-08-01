@@ -42,4 +42,8 @@ public class LinkDAO extends SqlMapClientDaoSupport {
 	public Link getLinkByLinkMD5(String linkmd5) {
 		return (Link) getSqlMapClientTemplate().queryForObject("link.getLinkByLinkMD5",linkmd5);
 	}
+	
+	public void updateLinkBySiteId(String siteId) {
+		getSqlMapClientTemplate().update("link.updateLinkBySiteId", siteId);
+	}
 }

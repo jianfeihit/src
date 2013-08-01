@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap        
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"        
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="systemMonitor">
+	<typeAlias alias="systemMonitor" type="com.obss.radar.crawler.po.SystemMonitor" />
+    
+    <insert id="saveMonitor" parameterClass="systemMonitor">
+		insert into t_system_monitor(type,value,lastupdatetime) value(#type#,#value#,SYSDATE())
+	</insert>
+	
+	<select id="getMonitor" parameterClass="java.lang.String"
+		resultClass="systemMonitor">
+		select * from t_system_monitor where type=#type#
+	</select>
+	
+	<update id="updateMonitor" parameterClass="systemMonitor">
+		update t_system_monitor set lastupdatetime=SYSDATE() where type=#type]#
+	</update>
+</sqlMap>

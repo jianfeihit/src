@@ -1,33 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Config>
-	<jmxPort>9999</jmxPort>
-	<ua>Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1</ua>
-	<storeBase>D:/page</storeBase>
-	<abstractLength>200</abstractLength>
 	
-	<cobWebConsumer>
-		<querySize>50</querySize>
-		<fetchSize>50</fetchSize>
-		<threshold>10</threshold>
-	</cobWebConsumer>
-	
-	<cobWebProductor>
-		<threshold>50</threshold>
-	</cobWebProductor>
-	
-	<!-- download workbench -->
-	<pageDownloader>
-		<executorPoolSize>20</executorPoolSize>
-		<threshold>20</threshold>
-	</pageDownloader>
-	
-	<documentParser>
-		<hrefExecutorPoolSize>50</hrefExecutorPoolSize>
-		<contentExecutorPoolSize>30</contentExecutorPoolSize>
-		<sleep>50</sleep>
-	</documentParser>
-	
-	<resourceManager>
-		<executorPoolSize>20</executorPoolSize>
-	</resourceManager>
 </Config>

@@ -11,5 +11,5 @@
 	<sqlMap resource="com/obss/radar/crawler/dao/sql/LinkSQL.xml" />
 	<sqlMap resource="com/obss/radar/crawler/dao/sql/KeywordPageSQL.xml" />
 	<sqlMap resource="com/obss/radar/crawler/dao/sql/KeywordSQL.xml" />
-	
+	<sqlMap resource="com/obss/radar/crawler/dao/sql/SystemMonitorSQL.xml" />
 </sqlMapConfig>  

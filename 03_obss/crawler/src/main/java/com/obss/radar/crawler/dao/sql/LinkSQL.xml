@@ -49,4 +49,8 @@
 		</isNotEmpty>
 		where id=#id#
 	</update>
+	
+	<update id="updateLinkBySiteId" parameterClass="java.lang.String">
+		update t_link set state='0' where siteId=#siteId#
+	</update>
 </sqlMap>

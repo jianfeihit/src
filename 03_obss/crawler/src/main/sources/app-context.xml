@@ -34,4 +34,16 @@
 			<value>classpath:sqlMapConfig.xml</value>
 		</property>
 	</bean>
+	
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="16" />
+		<property name="maxPoolSize" value="10000" />
+		<property name="queueCapacity" value="10000" />
+	</bean>
+	
+	<task:scheduled-tasks>  
+    	<task:scheduled ref="systemMonitorTask" method="doTask" cron="1 0/10 * * * ?"/> 
+    	<task:scheduled ref="hourLinkUpdater" method="doTask" cron="2 1 * * * ?"/>
+    	<task:scheduled ref="dayLinkUpdater" method="doTask" cron="3 1 1 * * ?"/> 
+	</task:scheduled-tasks>
 </beans>
