@@ -7,13 +7,13 @@
 
 	<insert id="saveLink" parameterClass="link">
 		insert into
-		t_link(siteId,linkMD5,link,snapPath,contentMD5,state,lastCrawDate,checktimes)
-		VALUES(#siteId#,#linkMD5#,#link#,#snapPath#,#contentMD5#,#state#,sysdate(),1)
+		t_link(siteId,parentId,linkMD5,link,snapPath,contentMD5,state,lastCrawDate,checktimes)
+		VALUES(#siteId#,#parentId#,#linkMD5#,#link#,#snapPath#,#contentMD5#,#state#,sysdate(),1)
 	</insert>
 
 	<select id="getUndoLink" parameterClass="java.util.Map"
 		resultClass="link">
-		select id,siteId,link,linkMD5,contentMD5
+		select id,siteId,parentId,link,linkMD5,contentMD5
 		from t_link
 		where siteId in (select t.id
 		from t_site t where
@@ -33,6 +33,13 @@
 		select linkMD5,link
 		from t_link
 		where linkMD5=#linkMD5#
+	</select>
+	
+	<select id="getLinkByLinkId" parameterClass="java.lang.String"
+		resultClass="link">
+		select linkMD5,link
+		from t_link
+		where id=#id#
 	</select>
 
 	<update id="updateLink" parameterClass="link">

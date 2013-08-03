@@ -1,5 +1,6 @@
 package com.obss.radar.crawler.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,19 +60,43 @@ public class LinkParser extends Thread implements Startupable {
 	public void run() {
 		while (!isStop) {
 			try {
-				long time1 = System.currentTimeMillis();
 				// download link
 				Link link = loader.getLink();
 				Site site = siteService.getSiteById(link.getSiteId());
-				Document document = Jsoup.connect(link.getLink()).timeout(timeout).userAgent(UA).get();
+				Document document = null;
+				try{
+					document = Jsoup.connect(link.getLink()).timeout(timeout).userAgent(UA).get();
+				}catch(IOException ioe){
+					if(StringUtils.isNotEmpty(ioe.getMessage()) 
+							&& ioe.getMessage().startsWith("Unhandled content type")){// 有附件
+						Link parentLink = linkDAO.getLinkByLinkId(link.getParentId());
+						if(parentLink != null){
+							KeywordPage page = new KeywordPage();
+							page.setLink(parentLink.getLink());
+							page.setSiteId(link.getSiteId());
+							page.setSiteName(site.getSiteName());
+							page.setSnapPath(parentLink.getSnapPath());
+							page.setWarnType(KeywordPage.WARNTYPE_ATTACH);
+							logger.info("因为含有附件而告警.link={}",link.getLink());
+							keywordPageDAO.saveKeywordPage(page);
+						}
+						link.setState(Link.STAR_DONE);
+						linkDAO.updateLink(link);
+						continue;
+					}else{
+						throw ioe;
+					}
+				}
+				
 				String text = document.text();
 				String contentMd5 = MD5Util.MD5(text);
 				if (contentMd5.equals(link.getContentMD5())) {
+					link.setState(Link.STAR_DONE);
+					linkDAO.updateLink(link);
 					logger.info("内容未发生变化，不处理.link={}",link.getLink());
 					continue;
 				}
 
-				long time2 = System.currentTimeMillis();
 				// collecte out links
 				Elements linkEles = document.select("a:not(a[href=#])");
 				for (Element newlinkEle : linkEles) {
@@ -82,27 +107,25 @@ public class LinkParser extends Thread implements Startupable {
 							continue;
 						}
 						Link toDBLink = new Link(site.getId(),newLink);
+						toDBLink.setParentId(link.getId());
 						saver.saveLink(toDBLink);
 					}
 				}
 
-				long time3 = System.currentTimeMillis();
 				// save snapshort
 				String snapPath = storer.store(link, document.html());
 				link.setSnapPath(snapPath);
 
-				long time4 = System.currentTimeMillis();
 				// check keyword
 				if (!Site.MODE_PASSIVE.equals(site.getRunMode())) {
 					List<String> hitKeyword = new ArrayList<String>();
-					String digist = text;
 					for (String keyword : site.getKeywordList()) {
-						if (digist.indexOf(keyword) >= 0) {
+						if (text.indexOf(keyword) >= 0) {
 							hitKeyword.add(keyword);
-							digist = highlight.lightContent(digist, keyword);
 						}
 					}
 					if (hitKeyword.size() > 0) {
+						String digist = highlight.lightContent(text, StringUtils.join(hitKeyword, " "));
 						KeywordPage page = new KeywordPage();
 						page.setKeyword(StringUtils.join(hitKeyword, "|"));
 						page.setDigist(digist);
@@ -115,18 +138,11 @@ public class LinkParser extends Thread implements Startupable {
 					}
 				}
 
-				long time5 = System.currentTimeMillis();
 				// update link
 				link.setContentMD5(contentMd5);
 				link.setState(Link.STAR_DONE);
 				linkDAO.updateLink(link);
-				long time6 = System.currentTimeMillis();
 				logger.info("处理完成.link={}",link.getLink());
-//				logger.debug("link={},loadTime={}",link.getLink(),(time6 - time5));
-//				logger.debug("link={},collecte out links time={}",link.getLink(),(time5 - time4));
-//				logger.debug("link={},save snapshort time={}",link.getLink(), (time4 - time3));
-//				logger.debug("link={},check keyword time={}",link.getLink(), (time3 - time2));
-//				logger.debug("link={},update link time={}",link.getLink(), (time2 - time1));
 			} catch (Throwable e) {
 				e.printStackTrace();
 			}

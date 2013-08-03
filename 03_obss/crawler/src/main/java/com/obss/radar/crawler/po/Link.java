@@ -2,6 +2,8 @@ package com.obss.radar.crawler.po;
 
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.obss.radar.crawler.util.MD5Util;
 
 public class Link{
@@ -30,6 +32,7 @@ public class Link{
 	}
 	
 	private String id;
+	private String parentId;
 	private String siteId;
 	private String linkMD5;
 	private String link;
@@ -87,24 +90,15 @@ public class Link{
 		this.lastCrawDate = lastCrawDate;
 	}
 
-	@Override
-    public int hashCode() {
-	    final int prime = 31;
-	    int result = 1;
-	    result = prime * result + ((linkMD5 == null) ? 0 : linkMD5.hashCode());
-	    return result;
-    }
+	public String getParentId() {
+		if(StringUtils.isEmpty(parentId)){
+			return "0";
+		}
+		return parentId;
+	}
 
-	@Override
-    public boolean equals(Object obj) {
-	    if (this == obj) return true;
-	    if (obj == null) return false;
-	    if (getClass() != obj.getClass()) return false;
-	    Link other = (Link) obj;
-	    if (linkMD5 == null) {
-		    if (other.linkMD5 != null) return false;
-	    } else if (!linkMD5.equals(other.linkMD5)) return false;
-	    return true;
-    }
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
 	
 }

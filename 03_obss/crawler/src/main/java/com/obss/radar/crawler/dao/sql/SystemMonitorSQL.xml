@@ -15,6 +15,6 @@
 	</select>
 	
 	<update id="updateMonitor" parameterClass="systemMonitor">
-		update t_system_monitor set lastupdatetime=SYSDATE() where type=#type]#
+		update t_system_monitor set lastupdatetime=SYSDATE() where type=#type#
 	</update>
 </sqlMap>

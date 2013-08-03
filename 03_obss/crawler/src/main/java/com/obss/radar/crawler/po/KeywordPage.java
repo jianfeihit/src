@@ -2,6 +2,8 @@ package com.obss.radar.crawler.po;
 
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+
 public class KeywordPage {
 	/**
 	 * 已处理
@@ -11,6 +13,10 @@ public class KeywordPage {
 	 * 已报告
 	 */
 	public static final String REPORTED = "1";
+	
+	public static final String WARNTYPE_KEYWORD = "0";
+	
+	public static final String WARNTYPE_ATTACH = "1";
 	
 	private String id;
 	private String siteId;
@@ -23,6 +29,7 @@ public class KeywordPage {
 	private Date checkDate;
 	private String isHandle;
 	private String isReport;
+	private String warnType;
 	
 	public String getId() {
 		return id;
@@ -89,5 +96,14 @@ public class KeywordPage {
 	}
 	public void setSiteName(String siteName) {
 		this.siteName = siteName;
+	}
+	public String getWarnType() {
+		if(StringUtils.isEmpty(warnType)){
+			return WARNTYPE_KEYWORD;
+		}
+		return warnType;
+	}
+	public void setWarnType(String warnType) {
+		this.warnType = warnType;
 	}
 }

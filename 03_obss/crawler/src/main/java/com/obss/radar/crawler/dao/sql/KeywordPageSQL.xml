@@ -6,7 +6,7 @@
 	<typeAlias alias="keywordPage" type="com.obss.radar.crawler.po.KeywordPage" />
     
    	<insert id="saveKeywordPage" parameterClass="keywordPage">
-		insert into t_keyword_page(siteId,siteName,keyword,title,digist,link,snapPath,checkDate,isHandle,isReport)
-		VALUES(#siteId#,#siteName#,#keyword#,#title#,#digist#,#link#,#snapPath#,sysdate(),#isHandle#,#isReport#)
+		insert into t_keyword_page(siteId,siteName,warnType,keyword,title,digist,link,snapPath,checkDate,isHandle,isReport)
+		VALUES(#siteId#,#siteName#,#warnType#,#keyword#,#title#,#digist#,#link#,#snapPath#,sysdate(),#isHandle#,#isReport#)
 	</insert>
 </sqlMap>
